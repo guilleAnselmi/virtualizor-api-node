@@ -14,6 +14,13 @@ yarn add @juniyadi/vcmanager-virtualizor
 
 # How to use
 
+- Get API from menu `API Credentials` in Virtualizor Panel
+- Copy and Paste to :
+    - `key` = API Key
+    - `secret` = API Password
+
+- Example
+
 ```javascript
 const Virtualizor = require('@juniyadi/vcmanager-virtualizor')
 
