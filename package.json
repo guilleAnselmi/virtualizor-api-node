@@ -1,0 +1,23 @@
+{
+  "name": "@juniyadi/vcmanager-virtualizor",
+  "version": "0.0.1",
+  "main": "src/Virtualizor.js",
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuniYadi/VCManager-Virtualizor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JuniYadi/VCManager-Virtualizor/issues"
+  },
+  "homepage": "https://github.com/JuniYadi/VCManager-Virtualizor#readme",
+  "author": "JuniYadi <me@juniyadi.id>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "lodash": "^4.17.15"
+  },
+  "scripts": {
+    "test": "echo \"No test specified\""
+  }
+}
