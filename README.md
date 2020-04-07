@@ -2,10 +2,20 @@
 
 Adapter to Virtualizor End User API
 
+# Installation
+
+```bash
+npm i @juniyadi/vcmanager-virtualizor
+
+or
+
+yarn add @juniyadi/vcmanager-virtualizor
+```
+
 # How to use
 
 ```javascript
-const Virtualizor = require('./src/Virtualizor')
+const Virtualizor = require('@juniyadi/vcmanager-virtualizor')
 
 const vps = new Virtualizor({
     api: 'https://example-panel.virtualizor.com:4083',
