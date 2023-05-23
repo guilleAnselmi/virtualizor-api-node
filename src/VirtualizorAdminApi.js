@@ -57,7 +57,7 @@ class Virtualizor_Admin_API {
    * @param  {array} cookies An array FOR SENDING COOKIES
    * @return {array} The unserialized array on success OR false on failure
    */
-  call(path, data = {}, post = {}, cookies = {}) {
+  call(path, data = {}, post, cookies = {}) {
     const apiKey = this.make_apikey(this.generateRandStr(8), this.pass);
 
     let url = `${this.protocol}://${this.ip}:${this.port}/${path}`;
@@ -73,7 +73,7 @@ class Virtualizor_Admin_API {
       url += `&apidata=${encodeURIComponent(btoa(JSON.stringify(data)))}`;
     }
 
-    // Set axios parameters.
+    // TODO fix this Set axios parameters.
     const config = {
       method: post ? "post" : "get",
       url,
@@ -260,6 +260,89 @@ class Virtualizor_Admin_API {
       post.editvps = post.editvps ? post.editvps : 1;
     }
     return post;
+  }
+
+  config(post = {}) {
+    const path = "index.php?act=config";
+    return this.call(path, {}, post);
+  }
+
+  config_slave(post = {}) {
+    let path = "index.php?act=config_slave";
+    if (post.serid) {
+      path += `$changeserid=${post.serid}`;
+    }
+    return this.call(path, {}, post);
+  }
+
+  cpu(serverid = 0) {
+    const path = "index.php?act=manageserver&changeserid=" + serverid;
+    return this.call(path);
+  }
+
+  serverloads(post = {}) {
+    const path = "index.php?act=serverloads";
+    return this.call(path, {}, post);
+  }
+
+  createssl(post) {
+    $path = "index.php?act=createssl";
+    return this.call(path, {}, post);
+  }
+
+  letsencrypt(post) {
+    const path = "index.php?act=letsencrypt";
+    return this.call(path, {}, post);
+  }
+
+  createtemplate(post = {}) {
+    const path = "index.php?act=createtemplate";
+    post.createtemp = 1;
+    return this.call(path, {}, post);
+  }
+
+  server_stats(post = {}) {
+    let path = "index.php?act=server_stats";
+    if (post.serid) {
+      path += `&changeserid=${post.serid}`;
+    }
+    return this.call(path, {}, post);
+  }
+
+  vps_stats(post = {}) {
+    let path = "index.php?act=vps_stats";
+
+    if (post.serid) {
+      path += `&changeserid=${post.serid}`;
+    }
+    if (post.reslen) {
+      path += `&reslen=${post.reslen}`;
+    }
+
+    if (post.page) {
+      path += `&page=${post.page}`;
+    }
+    return this.call(path, {}, post);
+  }
+
+  databackup(post) {
+    const path = "index.php?act=databackup";
+    return this.call(path, {}, post);
+  }
+
+  listdbbackfiles() {
+    const path = "index.php?act=databackup";
+    return this.call(path);
+  }
+
+  createvpsbackup(post) {
+    let path = "index.php?act=editbackup_plan";
+    if (post.vpsid) {
+      path = `index.php?act=managevps&vpsid=${post.vpsid}`;
+      post = {};
+      post.cbackup = 1;
+    }
+    return this.call(path, {}, post);
   }
 }
 
